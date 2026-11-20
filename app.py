@@ -17,6 +17,30 @@ def listar_tareas():
         print(f"{i}. {estado} {tarea['titulo']}")
 
 
+def completar_tarea():
+    if not tareas:
+        print("No hay tareas para completar.")
+        return
+    indice = int(input("Numero de tarea a completar: ")) - 1
+    if 0 <= indice < len(tareas):
+        tareas[indice]["completada"] = True
+        print("Tarea marcada como completada.")
+    else:
+        print("Numero de tarea invalido.")
+
+
+def eliminar_tarea():
+    if not tareas:
+        print("No hay tareas para eliminar.")
+        return
+    indice = int(input("Numero de tarea a eliminar: ")) - 1
+    if 0 <= indice < len(tareas):
+        eliminada = tareas.pop(indice)
+        print(f"Tarea '{eliminada['titulo']}' eliminada.")
+    else:
+        print("Numero de tarea invalido.")
+
+
 def mostrar_menu():
     print("\n=== GESTOR DE TAREAS CLI (AYUDA: Elige una opcion del 0 al 4) ===")
     print("1. Agregar tarea")
@@ -38,6 +62,10 @@ def main():
             agregar_tarea()
         elif opcion == "2":
             listar_tareas()
+        elif opcion == "3":
+            completar_tarea()
+        elif opcion == "4":
+            eliminar_tarea()
         else:
             print(f"Opcion '{opcion}' aun no implementada.")
 
